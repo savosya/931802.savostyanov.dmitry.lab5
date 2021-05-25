@@ -1,0 +1,45 @@
+﻿@model lab5.Models.DoctorModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Doctor</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Speciality" class="control-label"></label>
+                <input asp-for="Speciality" class="form-control" />
+                <span asp-validation-for="Speciality" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hospital" class="control-label"></label>
+                <br />
+                <select class="form-control" aria-label=".form-select-lg example" asp-for="Id">
+                    @foreach (HospitalModel h in ViewBag.hospitals)
+                    {
+                        <option value="@h.Id" class="form-control">@h.Name</option>
+                    }
+                </select>
+                <span style="color:red;">@Html.ValidationMessage("hosp")</span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
